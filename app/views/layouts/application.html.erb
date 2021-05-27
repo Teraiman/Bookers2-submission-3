@@ -16,14 +16,26 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+          <% if user_signed_in? %>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <li><a class="fas fa-home nav-link text-light" href="/"> Home</a></li>
-              <li><a class="fas fa-link nav-link text-light" href="/home/about"> About</a></li>
-              <li><a class="fas fa-user-plus nav-link text-light" href="/users/sign_in"> sign up</a></li>
-              <li><a class="fas fa-sign-in-alt nav-link text-light" href="/users/sign_up"> login</a></li>
+              <li><a class="fas fa-users nav-link text-light" href="/users"> Users</a></li>
+              <li><a class="fas fa-book-open nav-link text-light" href="/books"> Books</a></li>
+              <li><a class="fas fa-sign-out-alt nav-link text-light" <%= link_to "logout", destroy_user_session_path, method: :delete %>></a></li>
             </ul>
           </div>
+          <% else %>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <li><a class="fas fa-home nav-link text-light" href="/"> Home</a></li>
+              <li><%= link_to "About", home_about_path, class:"fas fa-link nav-link text-light" %></li>
+
+              <li><a class="fas fa-user-plus nav-link text-light" href="/users/sign_in"> login</a></li>
+              <li><a class="fas fa-sign-in-alt nav-link text-light" href="/users/sign_up"> sign up</a></li>
+            </ul>
+          </div>
+          <% end %>
         </div>
       </nav>
     </header>
